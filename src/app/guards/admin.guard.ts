@@ -25,12 +25,14 @@ export class AdminGuard implements CanActivate {
     | UrlTree {
 
     const user = JSON.parse(sessionStorage.getItem('user') || '{}');
-    const isAuthenticated = localStorage.getItem('user') !== null;
 
-    if (!isAuthenticated || user['role'] != 'admin') {
+    console.log('user', user['role'])
+
+    if (user['role'] != 'admin') {
       this.snackBar.open("Sorry, you don't have access to this page", 'Ok');
       this.router.navigate(['/base/login']);
     }
-    return isAuthenticated;
+
+    return (user['role'] != 'admin') ? false : true;
   }
 }
