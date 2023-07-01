@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<div  class="mat-typography mat-app-background">
+    <router-outlet></router-outlet>
+    <div class="nightDay flex gap-1em">
+        <mat-slide-toggle [formControl]="toggleControl" class="mr-8"></mat-slide-toggle>
+        <mat-icon *ngIf="className">bedtime</mat-icon>
+        <mat-icon class="mr-8" *ngIf="!className">brightness_5</mat-icon>
+    </div>
+</div>

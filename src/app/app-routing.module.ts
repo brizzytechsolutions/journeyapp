@@ -4,6 +4,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { BaseComponent } from './components/auth/base/base.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/base/login', pathMatch: 'full' }, // redirect to `first-component`
@@ -20,7 +21,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then(module => module.AdminModule),
-    // canActivate: [AdminGuard]
+    canActivate: [AdminGuard]
   },
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ]
